@@ -92,7 +92,7 @@ include 'admin/db_connect.php';
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                    <h2 class="mb-4">Partner Airlines</h2>
+                    <h2 class="mb-4">Primo Airlines</h2>
                     <hr class="divider">
 
                     </div>
