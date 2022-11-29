@@ -92,7 +92,7 @@ include 'admin/db_connect.php';
             <div class="container-fluid p-0">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                    <h2 class="mb-4">Partner Airlines</h2>
+                    <h2 class="mb-4">Primo Airlines</h2>
                     <hr class="divider">
 
                     </div>
@@ -122,7 +122,7 @@ include 'admin/db_connect.php';
             uni_modal_right('Product','view_prod.php?id='+$(this).attr('data-id'))
         })
         $('.select2').select2({
-            placeholder:'Select Departure',
+            placeholder:'Seleccione Fecha',
             width:'100%'
         })
         $('[name="trip"]').on("keypress change keyup",function(){
