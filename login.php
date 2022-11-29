@@ -2,13 +2,13 @@
 <div class="container-fluid">
 	<form action="" id="login-frm">
 		<div class="form-group">
-			<label for="" class="control-label">Correo guapo para guapos</label>
+			<label for="" class="control-label">Correo</label>
 			<input type="email" name="email" required="" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="" class="control-label">EEEESOOOO CHINGONAAAZOOOO</label>
+			<label for="" class="control-label">Contraseña</label>
 			<input type="password" name="password" required="" class="form-control">
-			<small><a href="javascript:void(0)" id="new_account">SAS a lo que venimos</a></small>
+			<small><a href="javascript:void(0)" id="new_account">Nueva cuenta</a></small>
 		</div>
 		<button class="button btn btn-info btn-sm">Entrar</button>
 	</form>
