@@ -14,7 +14,7 @@ include 'admin/db_connect.php';
             <div class="container-fluid h-100">
                 <div class="row h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-10 align-self-end mb-4 page-title">
-                    	<h3 class="text-white">Bienvenido al <?php echo $_SESSION['setting_name']; ?></h3>
+                        <h3 class="text-white">Bienvenido al <?php echo $_SESSION['setting_name']; ?></h3>
                         <hr class="divider my-4" />
                     <div class="col-md-12 mb-2 text-left">
                         <div class="card">
@@ -86,7 +86,7 @@ include 'admin/db_connect.php';
                 </div>
             </div>
         </header>
-	<section class="page-section" id="menu">
+    <section class="page-section" id="menu">
         
     <div id="portfolio" class="container">
             <div class="container-fluid p-0">
@@ -122,7 +122,7 @@ include 'admin/db_connect.php';
             uni_modal_right('Product','view_prod.php?id='+$(this).attr('data-id'))
         })
         $('.select2').select2({
-            placeholder:'Select Departure',
+            placeholder:'Seleccione Fecha',
             width:'100%'
         })
         $('[name="trip"]').on("keypress change keyup",function(){
@@ -133,6 +133,6 @@ include 'admin/db_connect.php';
             }
         })
     </script>
-	
+    
     </section>
 
