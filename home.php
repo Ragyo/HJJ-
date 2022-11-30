@@ -22,33 +22,33 @@ include 'admin/db_connect.php';
                                 <form id="manage-filter" action="index.php?page=flights" method="POST">
                                     <div class="row form-group">
                                         <div class="col-sm-3">
-                                            <label for="" class="control-label">De</label>
-                                            <select name="departure_airport_id" id="departure_location" class="custom-select browser-default select2">
-                                                <option value=""></option>
-                                            <?php
-                                                $airport = $conn->query("SELECT * FROM airport_list order by airport asc");
-                                            while($row = $airport->fetch_assoc()):
+                                            <label for="" class="control-label">Entrada</label>
+                                            <input type="date" class="form-control input-sm datetimepicker2" name="date" autocomplete="off">
+                                                <!-- <option value=""></option>
+                                            <?php//
+                                               // $airport = $conn->query("SELECT * FROM airport_list order by airport asc");
+                                           // while($row = $airport->fetch_assoc()):
                                             ?>
-                                                <option value="<?php echo $row['id'] ?>" <?php echo isset($departure_airport_id) && $departure_airport_id == $row['id'] ? "selected" : '' ?>><?php echo $row['location'].", ".$row['airport'] ?></option>
-                                            <?php endwhile; ?>
-                                            </select>
+                                                <option value="<?php //echo $row['id'] ?>" <?php// echo isset($departure_airport_id) && $departure_airport_id == $row['id'] ? "selected" : '' ?>><?php echo $row['location'].", ".$row['airport'] ?></option>
+                                            <?php //endwhile; ?>
+                                            </select> -->
                                         </div>
                                         <div class="col-sm-3">
-                                            <label for="" class="control-label">a</label>
-                                            <select name="arrival_airport_id" id="arrival_airport_id" class="custom-select browser-default select2">
+                                            <label for="" class="control-label">Salida</label>
+                                            <input type="date" class="form-control input-sm datetimepicker2" name="date" autocomplete="off">
 
-                                                <option value=""></option>
+                                                <!-- <option value=""></option>
 
                                             <?php
-                                                $airport = $conn->query("SELECT * FROM airport_list order by airport asc");
-                                            while($row = $airport->fetch_assoc()):
+                                             //  $airport = $conn->query("SELECT * FROM airport_list order by airport asc");
+                                           // while($row = $airport->fetch_assoc()):
                                             ?>
-                                                <option value="<?php echo $row['id'] ?>" <?php echo isset($arrival_airport_id) && $arrival_airport_id == $row['id'] ? "selected" : '' ?>><?php echo $row['location'].", ".$row['airport'] ?></option>
-                                            <?php endwhile; ?>
-                                            </select>
+                                                <option value="<?php// echo $row['id'] ?>" <?php// echo isset($arrival_airport_id) && $arrival_airport_id == $row['id'] ? "selected" : '' ?>><?php echo $row['location'].", ".$row['airport'] ?></option>
+                                            <?php //endwhile; ?>
+                                            </select> -->
                                         </div>
                                         <div class="col-sm-3">
-                                            <label for="" class="control-label">Fecha</label>
+                                            <label for="" class="control-label">Personas</label>
                                             <input type="date" class="form-control input-sm datetimepicker2" name="date" autocomplete="off">
                                         </div>
                                         <div class="col-sm-3" id="rdate" style="display: none">
