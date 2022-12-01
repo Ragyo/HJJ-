@@ -18,6 +18,12 @@
 	#uni_modal .modal-footer{
 		display:none;
 	}
+	.button {
+		background-color: #4CAF50;
+		border-radius: 8px;
+		font-size: 20px;
+		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
+		} /* Red */ 
 </style>
 
 <script>
