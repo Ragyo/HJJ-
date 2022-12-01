@@ -1,5 +1,5 @@
 <?php session_start() ?>
-<div class="container-fluid">
+<!-- <div class="container-fluid">
 	<form action="" id="login-frm">
 		<div class="form-group">
 			<label for="" class="control-label">Correo</label>
@@ -12,8 +12,22 @@
 		</div>
 		<button class="button btn btn-info btn-sm">Entrar</button>
 	</form>
-</div>
+</div> -->
+<form id='login' action='login.php' method='post' accept-charset='UTF-8'>
+<fieldset >
+<legend>Login</legend>
+<input type='hidden' name='submitted' id='submitted' value='1'/>
 
+<label for='username' >UserName*:</label>
+<input type='text' name='username' id='username'  maxlength="50" />
+
+<label for='password' >Password*:</label>
+<input type='password' name='password' id='password' maxlength="50" />
+<button class="button btn btn-info btn-sm">Entrar</button>
+
+
+</fieldset>
+</form>
 <style>
 	#uni_modal .modal-footer{
 		display:none;
