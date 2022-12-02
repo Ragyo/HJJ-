@@ -14,11 +14,11 @@
   	<div class="col-lg-12">
   		<div class="col-md-1 float-left" style="display: flex;">
   			<div class="logo">
-  				<span class="fa fa-plane-departure"></span>
+  				<span class="icofont-5-star-hotel"></span>
   			</div>
   		</div>
       <div class="col-md-4 float-left text-white">
-        <large><b>Sistema de Reserva de Vuelos en Línea</b></large>
+        <large><b>Sistema de Reservaciones Hotel Jardin Jaluco</b></large>
       </div>
 	  	<div class="col-md-2 float-right text-white">
 	  		<a href="ajax.php?action=logout" class="text-white"><?php echo $_SESSION['login_name'] ?> <i class="fa fa-power-off"></i></a>

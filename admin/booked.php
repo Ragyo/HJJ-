@@ -5,9 +5,10 @@
 		<div class="card">
 			<div class="card-header">
 				<large class="card-title">
-					<b>Booked Flights List</b>
+					<b>Listado de Resportes</b>
 				</large>
-				
+				<button class="btn btn-primary btn-block col-md-2 float-right" type="button" id="new_booked"><i class="fa fa-plus"></i> Reservacion</button>
+			
 			</div>
 			<div class="card-body">
 				<table class="table table-bordered" id="flight-list">
@@ -20,9 +21,9 @@
 					<thead>
 						<tr>
 							<th class="text-center">#</th>
-							<th class="text-center">Information</th>
-							<th class="text-center">Flight Info</th>
-							<th class="text-center">Action</th>
+							<th class="text-center">Informacion</th>
+							<th class="text-center">Detalles de Reservacion</th>
+							<th class="text-center">Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -40,9 +41,10 @@
 						 	
 						 	<td><?php echo $i++ ?></td>
 						 	<td>
-						 		<p>Name :<b><?php echo $row['name'] ?></b></p>
-						 		<p><small>Contact # :<b><?php echo $row['contact'] ?></small></b></p>
-						 		<p><small>Address :<b><?php echo $row['address'] ?></small></b></p>
+						 		<p>Nombre :<b><?php echo $row['name'] ?></b></p>
+						 		<p><small>Contacto # :<b><?php echo $row['contact'] ?></small></b></p>
+						 		<p><small>Direccion :<b><?php echo $row['address'] ?></small></b></p>
+								 <p><small>Correo Electronico :<b></small></b></p>
 						 	</td>
 						 	<td>
 						 		<div class="row">
@@ -50,12 +52,14 @@
 						 			<img src="../assets/img/<?php echo $row['logo_path'] ?>" alt="" class="btn-rounder badge-pill">
 						 		</div>
 						 		<div class="col-sm-6">
-						 		<p>Airline :<b><?php echo $row['airlines'] ?></b></p>
-						 		<p><small>Plane :<b><?php echo $row['plane_no'] ?></small></b></p>
-						 		<p><small>Airline :<b><?php echo $row['airlines'] ?></small></b></p>
-						 		<p><small>Location :<b><?php echo $aname[$row['departure_airport_id']].' - '.$aname[$row['arrival_airport_id']] ?></small></b></p>
-						 		<p><small>Departure :<b><?php echo date('M d,Y h:i A',strtotime($row['departure_datetime'])) ?></small></b></p>
-						 		<p><small>Arrival :<b><?php echo date('M d,Y h:i A',strtotime($row['arrival_datetime'])) ?></small></b></p>
+						 		<p>Habitacion :<b><?php echo $row['airlines'] ?></b></p>
+						 		<p><small>Personas :<b><?php echo $row['plane_no'] ?></small></b></p>
+						 		<p><small>Fecha de Reservacion :<b><?php echo $row['airlines'] ?></small></b></p>
+						 		<p><small>Noches de Reservacion :<b><?php echo $aname[$row['departure_airport_id']].' - '.$aname[$row['arrival_airport_id']] ?></small></b></p>
+						 		<p><small>Entrada :<b><?php echo date('M d,Y h:i A',strtotime($row['departure_datetime'])) ?></small></b></p>
+						 		<p><small>Salida :<b><?php echo date('M d,Y h:i A',strtotime($row['arrival_datetime'])) ?></small></b></p>
+								<p><small>Anticipo : <b></small></b></p>
+								<p><small>Saldo a Pagar : <b></small></b></p>
 						 		</div>
 						 		</div>
 						 	</td>
@@ -89,6 +93,9 @@
 	$('#flight-list').dataTable()
 	$('#new_booked').click(function(){
 		uni_modal("New Flight","manage_booked.php",'mid-large')
+	})
+	$('#new_flight').click(function(){
+		uni_modal("New Flight","manage_flight.php",'mid-large')
 	})
 	$('.edit_booked').click(function(){
 		uni_modal("Edit Information","manage_booked.php?id="+$(this).attr('data-id'),'mid-large')

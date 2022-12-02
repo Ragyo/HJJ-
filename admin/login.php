@@ -46,7 +46,7 @@ header("location:index.php?page=home");
 		background:#59b6ec61;
 		display: flex;
 		align-items: center;
-		background: url(../assets/img/travel-cover.jpg);
+		background: url(../assets/img/login.jpg);
 	    background-repeat: no-repeat;
 	    background-size: cover;
 	}
@@ -81,7 +81,7 @@ div#login-left::before,div#login-right::before {
   <main id="main" class=" bg-dark">
   		<div id="login-left">
   			<div class="logo">
-  				<span class="fa fa-plane-departure"></span>
+  				<span class="icofont-5-star-hotel"></span>
   			</div>
   		</div>
   		<div id="login-right">
@@ -89,14 +89,15 @@ div#login-left::before,div#login-right::before {
   				<div class="card-body">
   					<form id="login-form" >
   						<div class="form-group">
-  							<label for="username" class="control-label">Username</label>
+  							<label for="username" class="control-label">Nombre de Usuario</label>
   							<input type="text" id="username" name="username" class="form-control">
   						</div>
   						<div class="form-group">
-  							<label for="password" class="control-label">Password</label>
+  							<label for="password" class="control-label">Contraseña</label>
   							<input type="password" id="password" name="password" class="form-control">
   						</div>
-  						<center><button class="btn-sm btn-block btn-wave col-md-4 btn-primary">Login</button></center>
+  						<center><button class="btn-sm btn-block btn-wave col-md-6 btn-primary">Iniciar sesion</button></center>
+
   					</form>
   				</div>
   			</div>
@@ -105,7 +106,7 @@ div#login-left::before,div#login-right::before {
 
   </main>
 
-  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+  <a href="#" class="back-to-top"><i class="icofont-5-star-hotel"></i></a>
 
 
 </body>

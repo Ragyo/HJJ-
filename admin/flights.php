@@ -5,30 +5,25 @@
 		<div class="card">
 			<div class="card-header">
 				<large class="card-title">
-					<b>Flight List</b>
+					<b>Listado de Reservaciones</b>
 				</large>
-				<button class="btn btn-primary btn-block col-md-2 float-right" type="button" id="new_flight"><i class="fa fa-plus"></i> New Flight</button>
+				<button class="btn btn-primary btn-block col-md-2 float-right" type="button" id="new_flight"><i class="fa fa-plus"></i> Reservacion</button>
+			
 			</div>
 			<div class="card-body">
 				<table class="table table-bordered" id="flight-list">
 					<colgroup>
 						<col width="10%">
-						<col width="35%">
+						<col width="30%">
+						<col width="50%">
 						<col width="10%">
-						<col width="10%">
-						<col width="10%">
-						<col width="10%">
-						<col width="15%">
 					</colgroup>
 					<thead>
 						<tr>
-							<th class="text-center">Date</th>
-							<th class="text-center">Information</th>
-							<th class="text-center">Seats</th>
-							<th class="text-center">Booked</th>
-							<th class="text-center">Available</th>
-							<th class="text-center">Price</th>
-							<th class="text-center">Action</th>
+							<th class="text-center">#</th>
+							<th class="text-center">Informacion</th>
+							<th class="text-center">Detalles de Reservacion</th>
+							<th class="text-center">Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -37,35 +32,40 @@
 							while($row = $airport->fetch_assoc()){
 								$aname[$row['id']] = ucwords($row['airport'].', '.$row['location']);
 							}
-							$qry = $conn->query("SELECT f.*,a.airlines,a.logo_path FROM flight_list f inner join airlines_list a on f.airline_id = a.id  order by id desc");
+							$i=1;
+							$qry = $conn->query("SELECT b.*,f.*,a.airlines,a.logo_path,b.id as bid FROM  booked_flight b inner join flight_list f on f.id = b.flight_id inner join airlines_list a on f.airline_id = a.id  order by b.id desc");
 							while($row = $qry->fetch_assoc()):
-								$booked = $conn->query("SELECT * FROM booked_flight where flight_id = ".$row['id'])->num_rows;
 
 						 ?>
 						 <tr>
 						 	
-						 	<td><?php echo date('M d,Y',strtotime($row['date_created'])) ?></td>
+						 	<td><?php echo $i++ ?></td>
+						 	<td>
+						 		<p>Nombre :<b><?php echo $row['name'] ?></b></p>
+						 		<p><small>Contacto # :<b><?php echo $row['contact'] ?></small></b></p>
+						 		<p><small>Direccion :<b><?php echo $row['address'] ?></small></b></p>
+								 <p><small>Correo Electronico :<b></small></b></p>
+						 	</td>
 						 	<td>
 						 		<div class="row">
 						 		<div class="col-sm-4">
 						 			<img src="../assets/img/<?php echo $row['logo_path'] ?>" alt="" class="btn-rounder badge-pill">
 						 		</div>
 						 		<div class="col-sm-6">
-						 		<p>Airline :<b><?php echo $row['airlines'] ?></b></p>
-						 		<p><small>Airline :<b><?php echo $row['airlines'] ?></small></b></p>
-						 		<p><small>Location :<b><?php echo $aname[$row['departure_airport_id']].' - '.$aname[$row['arrival_airport_id']] ?></small></b></p>
-						 		<p><small>Departure :<b><?php echo date('M d,Y h:i A',strtotime($row['departure_datetime'])) ?></small></b></p>
-						 		<p><small>Arrival :<b><?php echo date('M d,Y h:i A',strtotime($row['arrival_datetime'])) ?></small></b></p>
+						 		<p>Habitacion :<b><?php echo $row['airlines'] ?></b></p>
+						 		<p><small>Personas :<b><?php echo $row['plane_no'] ?></small></b></p>
+						 		<p><small>Fecha de Reservacion :<b><?php echo $row['airlines'] ?></small></b></p>
+						 		<p><small>Noches de Reservacion :<b><?php echo $aname[$row['departure_airport_id']].' - '.$aname[$row['arrival_airport_id']] ?></small></b></p>
+						 		<p><small>Entrada :<b><?php echo date('M d,Y h:i A',strtotime($row['departure_datetime'])) ?></small></b></p>
+						 		<p><small>Salida :<b><?php echo date('M d,Y h:i A',strtotime($row['arrival_datetime'])) ?></small></b></p>
+								<p><small>Anticipo : <b></small></b></p>
+								<p><small>Saldo a Pagar : <b></small></b></p>
 						 		</div>
 						 		</div>
 						 	</td>
-						 	<td class="text-right"><?php echo $row['seats'] ?></td>
-						 	<td class="text-right"><?php echo $booked ?></td>
-						 	<td class="text-right"><?php echo $row['seats'] - $booked ?></td>
-						 	<td class="text-right"><?php echo number_format($row['price'],2) ?></td>
 						 	<td class="text-center">
-						 			<button class="btn btn-outline-primary btn-sm edit_flight" type="button" data-id="<?php echo $row['id'] ?>"><i class="fa fa-edit"></i></button>
-						 			<button class="btn btn-outline-danger btn-sm delete_flight" type="button" data-id="<?php echo $row['id'] ?>"><i class="fa fa-trash"></i></button>
+						 			<button class="btn btn-outline-primary btn-sm edit_booked" type="button" data-id="<?php echo $row['bid'] ?>"><i class="fa fa-edit"></i></button>
+						 			<button class="btn btn-outline-danger btn-sm delete_booked" type="button" data-id="<?php echo $row['bid'] ?>"><i class="fa fa-trash"></i></button>
 						 	</td>
 
 						 </tr>
@@ -91,16 +91,19 @@
 </style>	
 <script>
 	$('#flight-list').dataTable()
+	$('#new_booked').click(function(){
+		uni_modal("New Flight","manage_booked.php",'mid-large')
+	})
 	$('#new_flight').click(function(){
 		uni_modal("New Flight","manage_flight.php",'mid-large')
 	})
-	$('.edit_flight').click(function(){
-		uni_modal("Edit Flight","manage_flight.php?id="+$(this).attr('data-id'),'mid-large')
+	$('.edit_booked').click(function(){
+		uni_modal("Edit Information","manage_booked.php?id="+$(this).attr('data-id'),'mid-large')
 	})
-	$('.delete_flight').click(function(){
-		_conf("Are you sure to delete this Flight?","delete_flight",[$(this).attr('data-id')])
+	$('.delete_booked').click(function(){
+		_conf("Are you sure to delete this data?","delete_booked",[$(this).attr('data-id')])
 	})
-function delete_flight($id){
+function delete_booked($id){
 		start_load()
 		$.ajax({
 			url:'ajax.php?action=delete_flight',

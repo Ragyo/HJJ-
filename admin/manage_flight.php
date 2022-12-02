@@ -16,9 +16,9 @@ if(isset($_GET['id'])){
 			<div class="row">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label for="" class="control-label">Airline</label>
+						<label for="" class="control-label">Habitacion</label>
 						<select name="airline" id="airline" class="custom-select browser-default select2">
-							<option></option>
+						<option hidden selected>Selecciona una opción</option>
 							<?php 
 							$airline = $conn->query("SELECT * FROM airlines_list order by airlines asc");
 							while($row = $airline->fetch_assoc()):

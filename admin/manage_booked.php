@@ -11,11 +11,11 @@ foreach($qry->fetch_array() as $k => $v){
 		<input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">
 		<div class="row">
 			<div class="col-md-6">
-				<label class="control-label">Name</label>
+				<label class="control-label">Nombre</label>
 				<input type="text" name="name" class="form-control" value="<?php echo $name ?>">
 			</div>
 			<div class="col-md-6">
-				<label class="control-label">Contact Number</label>
+				<label class="control-label">Numero de contacto</label>
 				<input type="text" name="contact" class="form-control" value="<?php echo $contact ?>">
 			</div>
 		</div>
@@ -29,8 +29,8 @@ foreach($qry->fetch_array() as $k => $v){
 		<div id="row-field">
 			<div class="row ">
 				<div class="col-md-12 text-center">
-					<button class="btn btn-primary btn-sm " >Save</button>
-					<button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancel</button>
+					<button class="btn btn-primary btn-sm " >Guardar</button>
+					<button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
 				</div>
 			</div>
 		</div>
