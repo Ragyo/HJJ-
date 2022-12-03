@@ -33,7 +33,7 @@
 								$aname[$row['id']] = ucwords($row['airport'].', '.$row['location']);
 							}
 							$i=1;
-							$qry = $conn->query("SELECT b.*,f.*,a.airlines,a.logo_path,b.id as bid FROM  booked_flight b inner join flight_list f on f.id = b.flight_id inner join airlines_list a on f.airline_id = a.id  order by b.id desc");
+							$qry = $conn->query("SELECT b.*,f.*,a.airlines,a.costo_habitacion,b.id as bid FROM  booked_flight b inner join flight_list f on f.id = b.flight_id inner join airlines_list a on f.airline_id = a.id  order by b.id desc");
 							while($row = $qry->fetch_assoc()):
 
 						 ?>
@@ -49,7 +49,7 @@
 						 	<td>
 						 		<div class="row">
 						 		<div class="col-sm-4">
-						 			<img src="../assets/img/<?php echo $row['logo_path'] ?>" alt="" class="btn-rounder badge-pill">
+						 		<!--	<img src="../assets/img/<?php// echo $row['logo_path'] ?>" alt="" class="btn-rounder badge-pill">-->
 						 		</div>
 						 		<div class="col-sm-6">
 						 		<p>Habitacion :<b><?php echo $row['airlines'] ?></b></p>

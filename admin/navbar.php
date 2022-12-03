@@ -7,7 +7,7 @@
 
 				<a href="index.php?page=home" class="nav-item nav-home"><span class='icon-field'><i class="fa fa-home"></i></span> Inicio</a>
 				<a href="index.php?page=booked" class="nav-item nav-booked"><span class='icon-field'><i class="fa fa-book"></i></span> Reservaciones</a>
-				<a href="index.php?page=flights" class="nav-item nav-flights"><span class='icon-field'><i class="fa fa-plane-departure"></i></span> Flights</a>
+				<a href="index.php?page=flights" class="nav-item nav-flights"><span class='icon-field'><i class="icofont-hotel"></i></span> Habitaciones</a>
 				<a href="index.php?page=airport" class="nav-item nav-airport"><span class='icon-field'><i class="fa fa-map-marked-alt"></i></span> Airport</a>		
 				<a href="index.php?page=airport" class="nav-item nav-airport"><span class='icon-field'><i class="fa fa-building"></i></span> Airlines</a>		
 				<?php if($_SESSION['login_type'] == 1): ?>

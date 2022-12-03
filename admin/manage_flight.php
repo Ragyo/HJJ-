@@ -1,13 +1,20 @@
 <?php include 'db_connect.php' ?>
 <?php 
-
+$valor = 0;
 if(isset($_GET['id'])){
 	$qry = $conn->query("SELECT * FROM flight_list where id=".$_GET['id']);
 	foreach($qry->fetch_array() as $k => $val){
 		$$k = $val;
+
 	}
 }
-
+function valor ($v){
+	
+	$valor = $v;
+}
+function getvalor(){
+return $valor;
+}
 ?>
 <div class="container-fluid">
 	<div class="col-lg-12">
@@ -16,14 +23,14 @@ if(isset($_GET['id'])){
 			<div class="row">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label for="" class="control-label">Habitacion</label>
+						<label for="" class="control-label">Tipo de Habitacion</label>
 						<select name="airline" id="airline" class="custom-select browser-default select2">
 						<option hidden selected>Selecciona una opción</option>
 							<?php 
 							$airline = $conn->query("SELECT * FROM airlines_list order by airlines asc");
 							while($row = $airline->fetch_assoc()):
 							?>
-								<option value="<?php echo $row['id'] ?>" <?php echo isset($airline_id) && $airline_id == $row['id'] ? "selected" : '' ?>><?php echo $row['airlines'] ?></option>
+								<option value="<?php echo $row['id'] ?>" <?php echo isset($airline_id) && $airline_id == $row['id'] && $this->valor($row ['id']) == $row ['id']? "selected" : '' ?>><?php echo $row['airlines'] ?></option>
 							<?php endwhile; ?>
 						</select>
 					</div>
@@ -32,7 +39,23 @@ if(isset($_GET['id'])){
 			<div class="row">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label for="">Plane No</label>
+						<label for="" class="control-label">Habitacion</label>
+						<select name="airline" id="airline" class="custom-select browser-default select2">
+						<option hidden selected>Selecciona una opción</option>
+							<?php 
+							$habitaciones = $conn->query("SELECT * FROM habitaciones WHERE tipo_id = ".$GLOBALS['airline_id']." order by id asc");
+							while($row = $habitaciones->fetch_assoc()):
+							?>
+								<option value="<?php echo $row['id'] ?>" <?php echo isset($habitacion_id) && $habitacion_id == $row['id'] ? "selected" : '' ?>><?php echo $row['habitacion'] ?></option>
+							<?php endwhile; ?>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-8">
+					<div class="form-group">
+						<label for="">Observaciones</label>
 						<textarea name="plane_no" id="" cols="30" rows="2" class="form-control"><?php echo isset($plane_no) ? $plane_no : '' ?></textarea>
 					</div>
 				</div>
