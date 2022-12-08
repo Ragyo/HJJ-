@@ -131,7 +131,7 @@ div#login-left::before,div#login-right::before {
 				}else if(resp == 2){
 					location.href ='voting.php';
 				}else{
-					$('#login-form').prepend('<div class="alert alert-danger">Username or password is incorrect.</div>')
+					$('#login-form').prepend('<div class="alert alert-danger">Usuario o Contraseña es Incorrecto.</div>')
 					$('#login-form button[type="button"]').removeAttr('disabled').html('Login');
 				}
 			}

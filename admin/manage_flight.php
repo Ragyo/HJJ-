@@ -16,26 +16,46 @@ function getvalor(){
 return $valor;
 }
 ?>
-<div class="container-fluid">
+<div class="row">
 	<div class="col-lg-12">
 		<form id="manage-flight">
 			<input type="hidden" name="id" value="<?php echo isset($_GET['id']) ? $_GET['id'] : '' ?>">
 			<div class="row">
+			     
 				<div class="col-md-8">
 					<div class="form-group">
 						<label for="" class="control-label">Tipo de Habitacion</label>
+						
 						<select name="airline" id="airline" class="custom-select browser-default select2">
 						<option hidden selected>Selecciona una opción</option>
-							<?php 
+							<?php
+							$airline_id = 1;
 							$airline = $conn->query("SELECT * FROM airlines_list order by airlines asc");
 							while($row = $airline->fetch_assoc()):
 							?>
-								<option value="<?php echo $row['id'] ?>" <?php echo isset($airline_id) && $airline_id == $row['id'] && $this->valor($row ['id']) == $row ['id']? "selected" : '' ?>><?php echo $row['airlines'] ?></option>
-							<?php endwhile; ?>
+								<option value="<?php echo $row['id'] ?>" <?php echo isset($airline_id) && $airline_id == $row['id'] ? "selected" : '' ?>><?php echo $row['airlines'] ?></option>
+							
+								
+								<?php endwhile; ?>
 						</select>
 					</div>
+
 				</div>
+				<div class="col-md-2">
+					<label for="">N° Folio</label> 
+				 	 </div>
+				<div class="col-md-2">
+							<?php 
+							$airline = $conn->query("SELECT folio FROM flight_list order by folio desc");
+							$row = $airline->fetch_assoc();
+							//while($row = $airline->fetch_assoc()):
+							?>
+							
+				 	<!--<input style = "width: 100%;" type="text" name="id" value  = '' readonly>-->
+					 <label for=""><?php echo $row['folio']+1?></label> 
+			    </div>
 			</div>
+
 			<div class="row">
 				<div class="col-md-8">
 					<div class="form-group">
@@ -43,10 +63,10 @@ return $valor;
 						<select name="airline" id="airline" class="custom-select browser-default select2">
 						<option hidden selected>Selecciona una opción</option>
 							<?php 
-							$habitaciones = $conn->query("SELECT * FROM habitaciones WHERE tipo_id = ".$GLOBALS['airline_id']." order by id asc");
+							$habitaciones = $conn->query("SELECT * FROM habitaciones WHERE tipo_id = $airline_id order by id asc");
 							while($row = $habitaciones->fetch_assoc()):
 							?>
-								<option value="<?php echo $row['id'] ?>" <?php echo isset($habitacion_id) && $habitacion_id == $row['id'] ? "selected" : '' ?>><?php echo $row['habitacion'] ?></option>
+								<option value="<?php echo $row['id'] ?>" <?php echo isset($habitacion_id) && $habitacion_id == $row['id'] ? "selected" : '' ?>><?php echo $airline_id ?></option>
 							<?php endwhile; ?>
 						</select>
 					</div>

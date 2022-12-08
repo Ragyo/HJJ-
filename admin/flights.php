@@ -13,59 +13,59 @@
 			<div class="card-body">
 				<table class="table table-bordered" id="flight-list">
 					<colgroup>
-						<col width="10%">
-						<col width="30%">
+						<col width="15%">
+						<col width="25%">
 						<col width="50%">
 						<col width="10%">
 					</colgroup>
 					<thead>
 						<tr>
-							<th class="text-center">#</th>
+							<th class="text-center">N° Folio</th>
 							<th class="text-center">Informacion</th>
 							<th class="text-center">Detalles de Reservacion</th>
 							<th class="text-center">Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
+
 						<?php
-							$airport = $conn->query("SELECT * FROM airport_list ");
-							while($row = $airport->fetch_assoc()){
-								$aname[$row['id']] = ucwords($row['airport'].', '.$row['location']);
-							}
 							$i=1;
-							$qry = $conn->query("SELECT b.*,f.*,a.airlines,a.costo_habitacion,b.id as bid FROM  booked_flight b inner join flight_list f on f.id = b.flight_id inner join airlines_list a on f.airline_id = a.id  order by b.id desc");
+							$qry = $conn->query("SELECT DATEDIFF(fecha_salida,fecha_llegada) AS numnoches, z.*,y.airlines,w.habitacion,w.disponible,p.temp_alta,p.tem_baja FROM  flight_list z inner join airlines_list y on y.id = z.tipo_id inner join habitaciones w on w.id = z.habitacion_id inner join precio_habitacion p on p.habitacion_id = w.id order by z.id  desc");
 							while($row = $qry->fetch_assoc()):
 
 						 ?>
 						 <tr>
 						 	
-						 	<td><?php echo $i++ ?></td>
+						 	<td><?php echo $row['folio'] ?></td>
 						 	<td>
-						 		<p>Nombre :<b><?php echo $row['name'] ?></b></p>
-						 		<p><small>Contacto # :<b><?php echo $row['contact'] ?></small></b></p>
-						 		<p><small>Direccion :<b><?php echo $row['address'] ?></small></b></p>
-								 <p><small>Correo Electronico :<b></small></b></p>
+						 		<p> <b> Nombre : </b><?php echo $row['nombre'] ?></p>							
+								<p> <b> Telefono : </b><?php echo $row['telefono'] ?></p>
+								<p> <b> Correo : </b><?php echo $row['correo'] ?></p>
+								<p> <b> Lugar de Residencia : </b><?php echo $row['lugar_residencia'] ?></p>
 						 	</td>
 						 	<td>
 						 		<div class="row">
-						 		<div class="col-sm-4">
+						 		<div class="col-sm-1">
 						 		<!--	<img src="../assets/img/<?php// echo $row['logo_path'] ?>" alt="" class="btn-rounder badge-pill">-->
 						 		</div>
-						 		<div class="col-sm-6">
-						 		<p>Habitacion :<b><?php echo $row['airlines'] ?></b></p>
-						 		<p><small>Personas :<b><?php echo $row['plane_no'] ?></small></b></p>
-						 		<p><small>Fecha de Reservacion :<b><?php echo $row['airlines'] ?></small></b></p>
-						 		<p><small>Noches de Reservacion :<b><?php echo $aname[$row['departure_airport_id']].' - '.$aname[$row['arrival_airport_id']] ?></small></b></p>
-						 		<p><small>Entrada :<b><?php echo date('M d,Y h:i A',strtotime($row['departure_datetime'])) ?></small></b></p>
-						 		<p><small>Salida :<b><?php echo date('M d,Y h:i A',strtotime($row['arrival_datetime'])) ?></small></b></p>
-								<p><small>Anticipo : <b></small></b></p>
-								<p><small>Saldo a Pagar : <b></small></b></p>
+						 		<div class="col-sm-9">		
+							    <p> <b> Habitacion : </b><?php echo $row['habitacion'] ?></p>
+								<p> <b> Tipo de Habitacion : </b><?php echo $row['airlines'] ?></p>
+								<!--<p> <b> Disponibilidad : </b><?//php echo ($row['disponible'] == 0) ? 'No': 'Si' ?></p>-->
+						 		<p> <b> Fecha de Llegada : </b><?php echo $row['fecha_llegada'] ?></p>
+								<p> <b> Fecha de Salida : </b><?php echo $row['fecha_salida'] ?></p>
+								<p> <b> Numero de Noches : </b><?php echo $row['numnoches'] ?></p>
+								<p> <b> Pago por Noches : </b><?php echo ($row['temporada'] == 'baja') ? $row['tem_baja'] : $row['temp_alta'] ?></p>
+								<p> <b> Fecha de Reservacion : </b><?php echo $row['fecha_reservacion'] ?></p>
+								<p> <b> Deposito : </b><?php echo $row['deposito'] ?></p>
+								<p> <b> Numero de Personas : </b><?php echo $row['n_pax'] ?></p>
+								<p><b>Saldo a Pagar: </b><?php  echo ($row['temporada'] == 'baja') ? $row['numnoches'] * $row['tem_baja'] : $row['numnoches'] * $row['temp_alta'] ?></p>
 						 		</div>
 						 		</div>
 						 	</td>
 						 	<td class="text-center">
-						 			<button class="btn btn-outline-primary btn-sm edit_booked" type="button" data-id="<?php echo $row['bid'] ?>"><i class="fa fa-edit"></i></button>
-						 			<button class="btn btn-outline-danger btn-sm delete_booked" type="button" data-id="<?php echo $row['bid'] ?>"><i class="fa fa-trash"></i></button>
+						 			<button class="btn btn-outline-primary btn-sm edit_booked" type="button" data-id="<?php echo $row['id'] ?>"><i class="fa fa-edit"></i></button>
+						 			<button class="btn btn-outline-danger btn-sm delete_booked" type="button" data-id="<?php echo $row['id'] ?>"><i class="fa fa-trash"></i></button>
 						 	</td>
 
 						 </tr>
@@ -95,7 +95,7 @@
 		uni_modal("New Flight","manage_booked.php",'mid-large')
 	})
 	$('#new_flight').click(function(){
-		uni_modal("New Flight","manage_flight.php",'mid-large')
+		uni_modal("Nueva Reservacion","manage_flight.php",'mid-large')
 	})
 	$('.edit_booked').click(function(){
 		uni_modal("Edit Information","manage_booked.php?id="+$(this).attr('data-id'),'mid-large')

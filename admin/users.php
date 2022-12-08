@@ -6,7 +6,7 @@
 	
 	<div class="row">
 	<div class="col-lg-12">
-			<button class="btn btn-primary float-right btn-sm" id="new_user"><i class="fa fa-plus"></i> New user</button>
+			<button class="btn btn-primary float-right btn-sm" id="new_user"><i class="fa fa-plus"></i> Nuevo Usuario</button>
 	</div>
 	</div>
 	<br>
@@ -17,9 +17,9 @@
 			<thead>
 				<tr>
 					<th class="text-center">#</th>
-					<th class="text-center">Name</th>
-					<th class="text-center">Username</th>
-					<th class="text-center">Action</th>
+					<th class="text-center">Nombre</th>
+					<th class="text-center">Nombre de Usuario</th>
+					<th class="text-center">Accion</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -42,14 +42,14 @@
 				 	<td>
 				 		<center>
 								<div class="btn-group">
-								  <button type="button" class="btn btn-primary">Action</button>
+								  <button type="button" class="btn btn-primary">Accion</button>
 								  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								    <span class="sr-only">Toggle Dropdown</span>
 								  </button>
 								  <div class="dropdown-menu">
-								    <a class="dropdown-item edit_user" href="javascript:void(0)" data-id = '<?php echo $row['id'] ?>'>Edit</a>
+								    <a class="dropdown-item edit_user" href="javascript:void(0)" data-id = '<?php echo $row['id'] ?>'>Editar</a>
 								    <div class="dropdown-divider"></div>
-								    <a class="dropdown-item delete_user" href="javascript:void(0)" data-id = '<?php echo $row['id'] ?>'>Delete</a>
+								    <a class="dropdown-item delete_user" href="javascript:void(0)" data-id = '<?php echo $row['id'] ?>'>Eliminar</a>
 								  </div>
 								</div>
 								</center>
@@ -66,13 +66,13 @@
 <script>
 	
 $('#new_user').click(function(){
-	uni_modal('New User','manage_user.php')
+	uni_modal('Nuevo Usuario','manage_user.php')
 })
 $('.edit_user').click(function(){
-	uni_modal('Edit User','manage_user.php?id='+$(this).attr('data-id'))
+	uni_modal('Editar Usuario','manage_user.php?id='+$(this).attr('data-id'))
 })
 $('.delete_user').click(function(){
-		_conf("Are you sure to delete this user?","delete_user",[$(this).attr('data-id')])
+		_conf("Estas seguro que deseas eliminar este usuario?","delete_user",[$(this).attr('data-id')])
 	})
 	function delete_user($id){
 		start_load()
@@ -82,7 +82,7 @@ $('.delete_user').click(function(){
 			data:{id:$id},
 			success:function(resp){
 				if(resp==1){
-					alert_toast("Data successfully deleted",'success')
+					alert_toast("Usuario Eliminado con exito",'success')
 					setTimeout(function(){
 						location.reload()
 					},1500)
