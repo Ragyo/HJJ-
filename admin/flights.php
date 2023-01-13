@@ -28,9 +28,13 @@
 					</thead>
 					<tbody>
 
-						<?php
+					<?php
+							$airport = $conn->query("SELECT * FROM habitaciones ");
+							while($row = $airport->fetch_assoc()){
+								$aname[$row['id']] = ucwords($row['airport'].', '.$row['location']);
+							}
 							$i=1;
-							$qry = $conn->query("SELECT DATEDIFF(fecha_salida,fecha_llegada) AS numnoches, z.*,y.airlines,w.habitacion,w.disponible,p.temp_alta,p.tem_baja FROM  flight_list z inner join airlines_list y on y.id = z.tipo_id inner join habitaciones w on w.id = z.habitacion_id inner join precio_habitacion p on p.habitacion_id = w.id order by z.id  desc");
+							$qry = $conn->query("SELECT h.*,t.*,r.*,p.id,h.id as bid FROM reservaciones r  inner join habitaciones h on r.habitacion_id = h.id inner join tipohabitaciones t on t.id = h.tipo_id inner join preciohabitacion p on p.habitacion_id = h.id order by r.idReservaciones desc");
 							while($row = $qry->fetch_assoc()):
 
 						 ?>

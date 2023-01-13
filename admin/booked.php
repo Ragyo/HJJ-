@@ -28,12 +28,12 @@
 					</thead>
 					<tbody>
 						<?php
-							$airport = $conn->query("SELECT * FROM airport_list ");
+							$airport = $conn->query("SELECT * FROM habitaciones ");
 							while($row = $airport->fetch_assoc()){
 								$aname[$row['id']] = ucwords($row['airport'].', '.$row['location']);
 							}
 							$i=1;
-							$qry = $conn->query("SELECT b.*,f.*,a.airlines,a.costo_habitacion,b.id as bid FROM  booked_flight b inner join flight_list f on f.id = b.flight_id inner join airlines_list a on f.airline_id = a.id  order by b.id desc");
+							$qry = $conn->query("SELECT h.*,t.*,r.*,p.id,h.id as bid FROM reservaciones r  inner join habitaciones h on r.habitacion_id = h.id inner join tipohabitaciones t on t.id = h.tipo_id inner join preciohabitacion p on p.habitacion_id = h.id order by r.idReservaciones desc");
 							while($row = $qry->fetch_assoc()):
 
 						 ?>
